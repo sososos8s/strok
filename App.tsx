@@ -65,13 +65,13 @@ const App: React.FC = () => {
           <div className="flex space-x-3">
             <button 
               onClick={handleReset}
-              className="px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-md transition-colors border border-transparent hover:border-slate-200"
+              className="px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-white rounded-md transition-colors border border-transparent hover:border-slate-300"
             >
               Reset Form
             </button>
             <button 
               onClick={handleLoadSample}
-              className="px-3 py-1.5 text-xs font-medium text-cyan-700 bg-white hover:bg-cyan-50 rounded-md transition-colors border border-cyan-100 shadow-sm"
+              className="px-3 py-1.5 text-xs font-medium text-cyan-700 bg-white hover:bg-white rounded-md transition-colors border border-cyan-100 hover:border-cyan-300 shadow-sm"
             >
               Load Sample Data
             </button>
@@ -91,7 +91,7 @@ const App: React.FC = () => {
               </div>
               
               <div className="p-6 space-y-8">
-                {/* A) Demographic Information (Renamed from B to A) */}
+                {/* A) Demographic Information */}
                 <section>
                   <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 border-b border-slate-100 pb-2">A) Demographic Information</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -118,7 +118,7 @@ const App: React.FC = () => {
                   </div>
                 </section>
 
-                {/* B) Work & Social Status (Renamed from C to B) */}
+                {/* B) Work & Social Status */}
                 <section>
                   <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 border-b border-slate-100 pb-2">B) Work & Social Status</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -158,7 +158,7 @@ const App: React.FC = () => {
                   </div>
                 </section>
 
-                {/* C) Medical History (Renamed from D to C) */}
+                {/* C) Medical History */}
                 <section>
                   <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 border-b border-slate-100 pb-2">C) Medical History</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -185,7 +185,7 @@ const App: React.FC = () => {
                   </div>
                 </section>
 
-                {/* D) Clinical Measurements (Renamed from E to D) */}
+                {/* D) Clinical Measurements */}
                 <section>
                   <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 border-b border-slate-100 pb-2">D) Clinical Measurements</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -212,7 +212,7 @@ const App: React.FC = () => {
                   </div>
                 </section>
 
-                {/* E) Lifestyle (Renamed from F to E) */}
+                {/* E) Lifestyle */}
                 <section>
                   <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 border-b border-slate-100 pb-2">E) Lifestyle</h3>
                   <div className="grid grid-cols-1 gap-4">
@@ -261,7 +261,8 @@ const App: React.FC = () => {
           <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
             {prediction ? (
               <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden animate-fade-in-up">
-                <div className={`px-6 py-4 border-b flex items-center justify-between ${prediction.isStroke ? 'bg-white border-red-100' : 'bg-white border-green-100'}`}>
+                {/* Result Header - Fixed to white bg and slate border */}
+                <div className={`px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-white`}>
                   <h2 className="text-lg font-bold text-slate-800">Classification Result</h2>
                   <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${prediction.isStroke ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
                     Confirmed
@@ -277,15 +278,15 @@ const App: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Probabilities */}
+                  {/* Probabilities - Progress bar track changed to white with border */}
                   <div className="bg-white rounded-lg p-6 border border-slate-200 shadow-sm">
                     <div className="flex justify-between items-end mb-2">
                       <span className="text-sm font-medium text-slate-600">Stroke Probability</span>
                       <span className="text-xl font-bold text-slate-900">{(prediction.probability).toFixed(2)}</span>
                     </div>
-                    <div className="w-full bg-slate-100 rounded-full h-2.5 mb-4">
+                    <div className="w-full bg-white border border-slate-200 rounded-full h-2.5 mb-4">
                       <div 
-                        className={`h-2.5 rounded-full transition-all duration-1000 ${prediction.isStroke ? 'bg-red-500' : 'bg-green-500'}`} 
+                        className={`h-2.5 rounded-full transition-all duration-1000 -mt-[1px] ${prediction.isStroke ? 'bg-red-500' : 'bg-green-500'}`} 
                         style={{ width: `${prediction.probability * 100}%` }}
                       ></div>
                     </div>
