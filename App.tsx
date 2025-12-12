@@ -10,7 +10,7 @@ import {
   BinaryCondition 
 } from './types';
 import { INITIAL_PATIENT_DATA, SAMPLE_PATIENT_DATA } from './constants';
-import { predictStrokeRisk } from './services/geminiService';
+import { predictStrokeRisk } from './services/api';
 import InputField from './components/InputField';
 import InputSelect from './components/InputSelect';
 
@@ -45,10 +45,13 @@ const App: React.FC = () => {
     setPrediction(null);
     try {
       const result = await predictStrokeRisk(formData);
-      setPrediction(result);
+      // Only set prediction if we got a valid result (handled in api.ts)
+      if (result) {
+        setPrediction(result);
+      }
     } catch (error) {
       console.error(error);
-      alert("An error occurred during prediction.");
+      // Error is already alerted in the service
     } finally {
       setLoading(false);
     }
