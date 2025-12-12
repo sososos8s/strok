@@ -1,0 +1,5 @@
+{
+  "name": "Stroke Prediction System",
+  "description": "A binary classification medical interface for predicting stroke risk based on patient demographic and clinical data.",
+  "requestFramePermissions": []
+}
